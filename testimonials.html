@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials & References – Summer Splash Pool Services</title>
+  <meta name="description" content="Read what our clients say about Summer Splash Pool Services. View testimonials and professional references from commercial and residential customers.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Testimonials & References – Summer Splash Pool Services">
+  <meta property="og:description" content="Read what our clients say about Summer Splash Pool Services. View testimonials and professional references from commercial and residential customers.">
+  <meta property="og:url" content="https://summersplash.com/testimonials.html">
+  <meta property="og:image" content="https://summersplash.com/assets/og-image.jpg">
+  <meta property="og:site_name" content="Summer Splash Pool Services">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/testimonials.css">
+
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="testimonials">
+  <div class="page-wrapper">
+    <div id="header-slot"></div>
+
+    <main id="main-content">
+      <!-- Hero -->
+      <section class="testimonials-hero">
+        <div class="container">
+          <h1>Testimonials & References</h1>
+          <p>Hear from the pool owners, property managers, and businesses who trust Summer Splash with their pools.</p>
+        </div>
+      </section>
+
+      <!-- Testimonials Grid -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="label">Client Feedback</span>
+            <h2>What Our Clients Say</h2>
+          </div>
+          <div class="grid grid--3" id="testimonials-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- References Table -->
+      <section class="section section--gray">
+        <div class="container">
+          <div class="section-header">
+            <span class="label">Professional References</span>
+            <h2>Our References</h2>
+            <p>We're proud to share references from our long-term commercial partnerships.</p>
+          </div>
+          <div class="references-section">
+            <table class="references-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Contact</th>
+                  <th>Work Performed</th>
+                  <th>Date (From/To)</th>
+                </tr>
+              </thead>
+              <tbody id="references-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Submit a Review -->
+      <section class="section" id="leave-review">
+        <div class="container">
+          <div class="section-header">
+            <span class="label">Share Your Experience</span>
+            <h2>Leave a Review</h2>
+            <p>We'd love to hear about your experience with Summer Splash.</p>
+          </div>
+          <div class="review-form-wrap">
+            <form id="review-form" novalidate>
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label class="form-label" for="review-name">Your Name *</label>
+                  <input class="form-input" type="text" id="review-name" required placeholder="Full name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="review-property">Property Name</label>
+                  <input class="form-input" type="text" id="review-property" placeholder="e.g. 123 Main St or Property Name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Your Rating *</label>
+                <input type="hidden" id="review-rating" value="5">
+                <div class="star-rating-input" aria-label="Select rating">
+                  <button type="button" class="star-btn is-active" data-value="1" aria-label="1 star">&#9733;</button>
+                  <button type="button" class="star-btn is-active" data-value="2" aria-label="2 stars">&#9733;</button>
+                  <button type="button" class="star-btn is-active" data-value="3" aria-label="3 stars">&#9733;</button>
+                  <button type="button" class="star-btn is-active" data-value="4" aria-label="4 stars">&#9733;</button>
+                  <button type="button" class="star-btn is-active" data-value="5" aria-label="5 stars">&#9733;</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="review-text">Your Review *</label>
+                <textarea class="form-textarea" id="review-text" required placeholder="Tell us about your experience with Summer Splash..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-checkbox">
+                  <input type="checkbox" id="review-consent" required>
+                  <span>I agree to the <a href="privacy-policy.html">Privacy Policy</a> and consent to my review being displayed publicly. *</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn--cta btn--lg" style="width: 100%;">Submit Review</button>
+            </form>
+
+            <div class="review-success" id="review-success">
+              <div class="form-success__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h3>Review Submitted!</h3>
+              <p>Thank you for your review. It will be visible once approved by our team.</p>
+              <button type="button" class="btn btn--primary btn--sm" style="margin-top: var(--space-4);" onclick="document.getElementById('review-success').classList.remove('is-visible'); document.getElementById('review-form').style.display=''; document.getElementById('review-form').reset(); document.querySelectorAll('.star-btn').forEach(s => s.classList.add('is-active'));">Write Another Review</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" style="background: linear-gradient(135deg, var(--color-aqua-dark) 0%, var(--color-turquoise) 100%); text-align: center;">
+        <div class="container">
+          <h2 style="color: var(--color-white); margin-bottom: var(--space-4);">Join Our Growing List of Happy Clients</h2>
+          <p style="color: rgba(255,255,255,0.9); font-size: var(--text-lg); margin-bottom: var(--space-8); max-width: 500px; margin-inline: auto;">Experience the Summer Splash difference — get your free quote today.</p>
+          <a href="contact.html" class="btn btn--white btn--lg">Get a Free Quote</a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+  </div>
+</body>
+</html>

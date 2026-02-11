@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Submissions – Summer Splash Pool Services</title>
+  <meta name="description" content="View your submitted reviews and contact inquiries with Summer Splash Pool Services.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="My Submissions – Summer Splash Pool Services">
+  <meta property="og:description" content="View your submitted reviews and contact inquiries with Summer Splash Pool Services.">
+  <meta property="og:url" content="https://summersplash.com/my-submissions.html">
+  <meta property="og:image" content="https://summersplash.com/assets/og-image.jpg">
+  <meta property="og:site_name" content="Summer Splash Pool Services">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <script type="module" src="js/main.js"></script>
+
+  <style>
+    .submissions-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+      margin-top: var(--header-height);
+      padding-block: var(--space-16);
+      text-align: center;
+    }
+
+    .submissions-hero h1 {
+      color: var(--color-white);
+      margin-bottom: var(--space-4);
+    }
+
+    .submissions-hero p {
+      color: var(--color-gray-300);
+      font-size: var(--text-lg);
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .submissions-section {
+      margin-bottom: var(--space-10);
+    }
+
+    .submissions-section h2 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid var(--color-gray-200);
+    }
+
+    .submission-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+
+    .submission-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .submission-card__text {
+      font-size: var(--text-base);
+      color: var(--color-gray-600);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-3);
+    }
+
+    .submission-card__meta {
+      font-size: var(--text-sm);
+      color: var(--color-gray-400);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .submissions-empty {
+      text-align: center;
+      padding: var(--space-10);
+      color: var(--color-gray-400);
+      font-size: var(--text-base);
+    }
+
+    .submissions-empty a {
+      color: var(--color-aqua);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body data-page="my-submissions">
+  <div class="page-wrapper">
+    <div id="header-slot"></div>
+
+    <main id="main-content">
+      <section class="submissions-hero">
+        <div class="container">
+          <h1>My Submissions</h1>
+          <p>View your submitted reviews and contact inquiries. Data is stored locally in your browser.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="submissions-section">
+            <h2>My Reviews</h2>
+            <div id="my-reviews">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="submissions-section">
+            <h2>My Contact Inquiries</h2>
+            <div id="my-contacts">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "t1",
+    "name": "Sarah Mitchell",
+    "property": "4521 Bayview Terrace, Tampa, FL",
+    "role": "Homeowner",
+    "location": "Tampa, FL",
+    "rating": 5,
+    "text": "Summer Splash transformed our backyard pool from a neglected eyesore into a stunning oasis. Their maintenance team is always on time and incredibly thorough. We couldn't be happier!",
+    "date": "2025-11-15",
+    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    "id": "t2",
+    "name": "James Rodriguez",
+    "property": "Sunset Village Community Pool",
+    "role": "HOA President",
+    "location": "St. Petersburg, FL",
+    "rating": 5,
+    "text": "We switched our community pool management to Summer Splash two years ago, and the difference is night and day. The water is always crystal clear, and residents constantly compliment the condition of our facilities.",
+    "date": "2025-10-02",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    "id": "t3",
+    "name": "Linda Chen",
+    "property": "Clearwater Bay Resort",
+    "role": "Hotel Manager",
+    "location": "Clearwater, FL",
+    "rating": 5,
+    "text": "As a hotel, our pool is a key amenity for guests. Summer Splash handles everything from daily maintenance to seasonal renovations. Their professionalism and reliability have been outstanding.",
+    "date": "2025-09-20",
+    "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    "id": "t4",
+    "name": "Mark Thompson",
+    "property": "782 Palm Ave, Sarasota, FL",
+    "role": "Homeowner",
+    "location": "Sarasota, FL",
+    "rating": 4,
+    "text": "The renovation team did an amazing job resurfacing our pool and updating the tile work. The project was completed on time and the results exceeded our expectations. Highly recommend!",
+    "date": "2025-08-14",
+    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    "id": "t5",
+    "name": "Patricia Gonzalez",
+    "property": "Lakeside Properties (3 locations)",
+    "role": "Property Manager",
+    "location": "Orlando, FL",
+    "rating": 5,
+    "text": "I manage multiple properties and Summer Splash handles all the pool services. Their team is responsive, their pricing is fair, and they always go above and beyond. A true partner in property management.",
+    "date": "2025-07-28",
+    "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    "id": "t6",
+    "name": "David Park",
+    "property": "Palm Harbor Athletic Club",
+    "role": "Fitness Center Owner",
+    "location": "Naples, FL",
+    "rating": 5,
+    "text": "Our lap pool needs to meet strict health standards. Summer Splash not only meets those standards but exceeds them. Their chemical management and filtration expertise is top-notch.",
+    "date": "2025-06-10",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
+  }
+]

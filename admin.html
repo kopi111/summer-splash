@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Summer Splash Pool Services</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="admin">
+  <div class="page-wrapper">
+    <div id="header-slot"></div>
+
+    <main id="main-content" class="admin-page">
+      <!-- Login -->
+      <section class="admin-login" id="admin-login">
+        <div class="admin-login__card">
+          <h1>Admin Panel</h1>
+          <p>Enter the admin password to manage your site.</p>
+          <div class="admin-login__error" id="admin-login-error" role="alert"></div>
+          <form id="admin-login-form">
+            <div class="form-group">
+              <label class="form-label" for="admin-password">Password</label>
+              <input class="form-input" type="password" id="admin-password" required placeholder="Enter admin password" autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn--primary" style="width:100%;">Log In</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section class="admin-dashboard" id="admin-dashboard">
+        <div class="container">
+          <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <button class="btn btn--secondary btn--sm" id="admin-logout">Log Out</button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="admin-tabs" role="tablist">
+            <button class="admin-tab is-active" role="tab" data-panel="panel-admin-analytics">Analytics</button>
+            <button class="admin-tab" role="tab" data-panel="panel-admin-testimonials">Testimonials</button>
+            <button class="admin-tab" role="tab" data-panel="panel-admin-references">References</button>
+            <button class="admin-tab" role="tab" data-panel="panel-admin-contacts">Contacts</button>
+            <button class="admin-tab" role="tab" data-panel="panel-admin-services">Services</button>
+          </div>
+
+          <!-- Analytics Panel -->
+          <div class="admin-panel is-active" id="panel-admin-analytics">
+            <div class="admin-toolbar">
+              <h2>Overview</h2>
+            </div>
+            <div class="analytics-grid" id="analytics-cards">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Testimonials Panel -->
+          <div class="admin-panel" id="panel-admin-testimonials">
+            <div class="admin-toolbar">
+              <h2>Manage Testimonials</h2>
+              <div class="admin-toolbar__actions">
+                <button class="btn btn--primary btn--sm" id="add-testimonial-btn">+ Add Testimonial</button>
+                <button class="btn btn--secondary btn--sm" id="export-testimonials-btn">Export JSON</button>
+              </div>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Author</th>
+                    <th>Text</th>
+                    <th>Rating</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-testimonials-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- References Panel -->
+          <div class="admin-panel" id="panel-admin-references">
+            <div class="admin-toolbar">
+              <h2>Manage References</h2>
+              <div class="admin-toolbar__actions">
+                <button class="btn btn--primary btn--sm" id="add-reference-btn">+ Add Reference</button>
+                <button class="btn btn--secondary btn--sm" id="export-references-btn">Export JSON</button>
+              </div>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Property</th>
+                    <th>Contact</th>
+                    <th>Work Performed</th>
+                    <th>Date (From/To)</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-references-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Contacts Panel -->
+          <div class="admin-panel" id="panel-admin-contacts">
+            <div class="admin-toolbar">
+              <h2>Contact Submissions</h2>
+              <div class="admin-toolbar__actions">
+                <button class="btn btn--secondary btn--sm" id="export-contacts-btn">Export CSV</button>
+              </div>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Service</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-contacts-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Services Panel -->
+          <div class="admin-panel" id="panel-admin-services">
+            <div class="admin-toolbar">
+              <h2>Manage Services</h2>
+              <div class="admin-toolbar__actions">
+                <button class="btn btn--primary btn--sm" id="add-service-btn">+ Add Service</button>
+                <button class="btn btn--secondary btn--sm" id="export-services-btn">Export JSON</button>
+              </div>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-services-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-disclaimer">
+            <strong>Note:</strong> This admin panel uses client-side storage (localStorage). Changes are saved locally in your browser. Use the export buttons to download updated data files that can be committed to the repository for permanent changes.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+  </div>
+
+  <!-- Add/Edit Testimonial Modal -->
+  <div class="modal-overlay" id="testimonial-modal">
+    <div class="modal" role="dialog" aria-labelledby="modal-testimonial-title">
+      <div class="modal__header">
+        <h3 id="modal-testimonial-title">Add Testimonial</h3>
+        <button class="modal__close" aria-label="Close">&times;</button>
+      </div>
+      <form id="testimonial-form">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label" for="t-name">Name *</label>
+            <input class="form-input" type="text" id="t-name" name="t-name" required placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-property">Property *</label>
+            <input class="form-input" type="text" id="t-property" name="t-property" required placeholder="e.g. 123 Main St or Property Name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-role">Role *</label>
+            <input class="form-input" type="text" id="t-role" name="t-role" required placeholder="e.g. Homeowner, HOA President">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-location">Location *</label>
+            <input class="form-input" type="text" id="t-location" name="t-location" required placeholder="e.g. Tampa, FL">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-rating">Rating</label>
+            <select class="form-select" id="t-rating" name="t-rating">
+              <option value="5">5 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="2">2 Stars</option>
+              <option value="1">1 Star</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-text">Testimonial Text *</label>
+            <textarea class="form-textarea" id="t-text" name="t-text" required placeholder="Their testimonial..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="t-photo">Photo URL</label>
+            <input class="form-input" type="url" id="t-photo" name="t-photo" placeholder="https://...">
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary btn--sm modal__close">Cancel</button>
+          <button type="submit" class="btn btn--primary btn--sm">Add Testimonial</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Reference Modal -->
+  <div class="modal-overlay" id="reference-modal">
+    <div class="modal" role="dialog" aria-labelledby="modal-reference-title">
+      <div class="modal__header">
+        <h3 id="modal-reference-title">Add Reference</h3>
+        <button class="modal__close" aria-label="Close">&times;</button>
+      </div>
+      <form id="reference-form">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label" for="r-company">Property Name *</label>
+            <input class="form-input" type="text" id="r-company" name="r-company" required placeholder="Property or company name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-address">Property Address *</label>
+            <input class="form-input" type="text" id="r-address" name="r-address" required placeholder="123 Main St, City, FL 33701">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-contact">Contact Name *</label>
+            <input class="form-input" type="text" id="r-contact" name="r-contact" required placeholder="Name, Title">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-phone">Contact Number</label>
+            <input class="form-input" type="tel" id="r-phone" name="r-phone" placeholder="(555) 000-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-service">Work Performed *</label>
+            <input class="form-input" type="text" id="r-service" name="r-service" required placeholder="e.g. Commercial Maintenance">
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="r-date-from">Date From *</label>
+              <input class="form-input" type="month" id="r-date-from" name="r-date-from" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="r-date-to">Date To</label>
+              <input class="form-input" type="text" id="r-date-to" name="r-date-to" placeholder="e.g. 2026-01 or Present">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-description">Description</label>
+            <textarea class="form-textarea" id="r-description" name="r-description" placeholder="Brief description of services provided..."></textarea>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary btn--sm modal__close">Cancel</button>
+          <button type="submit" class="btn btn--primary btn--sm">Add Reference</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add/Edit Service Modal -->
+  <div class="modal-overlay" id="service-modal">
+    <div class="modal" role="dialog" aria-labelledby="modal-service-title">
+      <div class="modal__header">
+        <h3 id="modal-service-title">Add Service</h3>
+        <button class="modal__close" aria-label="Close">&times;</button>
+      </div>
+      <form id="service-form">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label" for="s-title">Title *</label>
+            <input class="form-input" type="text" id="s-title" name="s-title" required placeholder="e.g. Pool Management">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-category">Category *</label>
+            <select class="form-select" id="s-category" name="s-category">
+              <option value="commercial">Commercial</option>
+              <option value="residential">Residential</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-description">Description *</label>
+            <textarea class="form-textarea" id="s-description" name="s-description" required placeholder="Service description..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-features">Features (one per line)</label>
+            <textarea class="form-textarea" id="s-features" name="s-features" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" style="min-height: 80px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-image-url">Image URL</label>
+            <input class="form-input" type="url" id="s-image-url" name="s-image-url" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-image-file">Or Upload Image (max 500KB)</label>
+            <input class="form-input" type="file" id="s-image-file" accept="image/*">
+            <img id="s-image-preview" style="display:none; margin-top: var(--space-2); max-width: 200px; border-radius: var(--radius-md);" alt="Preview">
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary btn--sm modal__close">Cancel</button>
+          <button type="submit" class="btn btn--primary btn--sm">Add Service</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

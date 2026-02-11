@@ -1,0 +1,46 @@
+[
+  {
+    "id": "r1",
+    "company": "Bayshore Resort & Spa",
+    "address": "450 Bayshore Blvd, Tampa, FL 33606",
+    "contact": "Maria Santos, Operations Director",
+    "phone": "(555) 234-5678",
+    "service": "Commercial Pool Management",
+    "dateFrom": "2023-01",
+    "dateTo": "Present",
+    "description": "Full-service management of resort pool complex including main pool, children's pool, and two hot tubs."
+  },
+  {
+    "id": "r2",
+    "company": "Sunset Village HOA",
+    "address": "1200 Sunset Dr, St. Petersburg, FL 33707",
+    "contact": "Robert Williams, Board Chair",
+    "phone": "(555) 345-6789",
+    "service": "Maintenance & Renovation",
+    "dateFrom": "2024-02",
+    "dateTo": "Present",
+    "description": "Weekly maintenance for community pool and complete renovation of pool deck and resurfacing."
+  },
+  {
+    "id": "r3",
+    "company": "Palm Harbor Athletic Club",
+    "address": "875 Palm Harbor Pkwy, Palm Harbor, FL 34683",
+    "contact": "Jennifer Liu, General Manager",
+    "phone": "(555) 456-7890",
+    "service": "Commercial Maintenance",
+    "dateFrom": "2022-03",
+    "dateTo": "Present",
+    "description": "Daily maintenance of Olympic-size lap pool, therapy pool, and associated filtration systems."
+  },
+  {
+    "id": "r4",
+    "company": "Coastal Living Apartments",
+    "address": "3100 Gulf Blvd, Clearwater, FL 33767",
+    "contact": "Michael Brown, Property Manager",
+    "phone": "(555) 567-8901",
+    "service": "Pool Management & Repairs",
+    "dateFrom": "2024-08",
+    "dateTo": "Present",
+    "description": "Ongoing management of two apartment complex pools including emergency repair services."
+  }
+]

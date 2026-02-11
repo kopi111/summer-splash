@@ -1,0 +1,200 @@
+/* ==========================================================================
+   About – Story, Mission, Team Grid
+   ========================================================================== */
+
+.about-hero {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+  margin-top: var(--header-height);
+  padding-block: var(--space-16);
+  text-align: center;
+}
+
+.about-hero h1 {
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.about-hero p {
+  color: var(--color-gray-300);
+  font-size: var(--text-lg);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* Story Section */
+.about-story {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.about-story__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.about-story__image img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.about-story__content h2 {
+  margin-bottom: var(--space-4);
+}
+
+.about-story__content p {
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .about-story {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mission / Values */
+.values-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.value-card {
+  padding: var(--space-6);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.value-card__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(0, 188, 212, 0.1);
+  color: var(--color-aqua);
+}
+
+.value-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+.value-card p {
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 640px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Trust Badges */
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-8);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 140px;
+  text-align: center;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.trust-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.trust-badge__icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.15) 0%, rgba(64, 224, 208, 0.15) 100%);
+  color: var(--color-aqua);
+}
+
+.trust-badge__label {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-navy);
+}
+
+/* Team Grid */
+.team-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  text-align: center;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card__photo,
+.team-card__photo-placeholder {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  background: var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-card__photo-placeholder svg {
+  width: 100%;
+  height: 100%;
+}
+
+.team-card__info {
+  padding: var(--space-6);
+}
+
+.team-card__name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-navy);
+  margin-bottom: var(--space-1);
+}
+
+.team-card__role {
+  font-size: var(--text-sm);
+  color: var(--color-aqua);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.team-card__bio {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+}
