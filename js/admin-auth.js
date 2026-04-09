@@ -13,7 +13,7 @@ import { initAdminServices } from './admin-services.js';
 import { initAdminAnalytics } from './admin-analytics.js';
 
 // SHA-256 hash of "summersplash2026"
-const PASSWORD_HASH = '5a0d1b6f4c9e8a7b3d2f1e0c9b8a7d6e5f4c3b2a1d0e9f8c7b6a5d4e3f2c1b';
+const PASSWORD_HASH = 'c95d124041c891e5cf8e54a82e1dfbb6e1d0a9c1abbe4ed20259776085400c11';
 
 export function initAdminAuth() {
   const loginSection = document.getElementById('admin-login');
@@ -33,10 +33,13 @@ export function initAdminAuth() {
     e.preventDefault();
     const password = form.querySelector('#admin-password').value;
 
-    const hash = await sha256(password);
-
-    // Accept either matching hash or the literal password (for usability)
-    if (hash === PASSWORD_HASH || password === 'summersplash2026') {
+    // Check literal password first (crypto.subtle requires HTTPS; this works on HTTP too)
+    let authenticated = password === 'summersplash2026';
+    if (!authenticated && crypto.subtle) {
+      const hash = await sha256(password);
+      authenticated = hash === PASSWORD_HASH;
+    }
+    if (authenticated) {
       sessionStorage.setItem('ss_admin', 'true');
       if (errorEl) errorEl.classList.remove('is-visible');
       showDashboard(loginSection, dashboard);
