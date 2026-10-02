@@ -24,7 +24,7 @@
   font-family: var(--font-heading);
   font-size: 8rem;
   font-weight: var(--weight-bold);
-  color: var(--color-aqua);
+  color: var(--color-aqua-ink);
   line-height: 1;
   margin-bottom: var(--space-4);
   opacity: 0.8;
@@ -134,4 +134,12 @@
   .error-page__code {
     font-size: 12rem;
   }
+}
+
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
 }

@@ -2,25 +2,6 @@
    Services – Tabs, Service Cards
    ========================================================================== */
 
-.services-hero {
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
-  margin-top: var(--header-height);
-  padding-block: var(--space-16);
-  text-align: center;
-}
-
-.services-hero h1 {
-  color: var(--color-white);
-  margin-bottom: var(--space-4);
-}
-
-.services-hero p {
-  color: var(--color-gray-300);
-  font-size: var(--text-lg);
-  max-width: 600px;
-  margin-inline: auto;
-}
-
 /* Tabs */
 .services-tabs {
   display: flex;
@@ -31,6 +12,7 @@
 }
 
 .services-tab {
+  min-height: 44px;
   padding: var(--space-3) var(--space-6);
   font-family: var(--font-heading);
   font-size: var(--text-base);
@@ -42,12 +24,12 @@
 }
 
 .services-tab:hover {
-  color: var(--color-aqua);
+  color: var(--color-aqua-ink);
   background: rgba(0, 188, 212, 0.1);
 }
 
 .services-tab.is-active {
-  color: var(--color-white);
+  color: var(--color-navy);
   background: var(--color-aqua);
 }
 
@@ -68,7 +50,6 @@
   padding: 0;
   overflow: hidden;
   transition: transform var(--transition-base), box-shadow var(--transition-base);
-  border-top: 4px solid var(--color-aqua);
 }
 
 .service-card__image {
@@ -88,14 +69,14 @@
 }
 
 .service-card__icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-lg);
   background: rgba(0, 188, 212, 0.1);
-  color: var(--color-aqua);
+  color: var(--color-aqua-ink);
   margin-bottom: var(--space-4);
 }
 

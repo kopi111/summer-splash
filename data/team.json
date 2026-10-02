@@ -1,30 +1,27 @@
 [
   {
     "id": "m1",
-    "name": "Carlos Rivera",
-    "role": "Founder & CEO",
-    "bio": "With over 20 years in the pool industry, Carlos founded Summer Splash to bring top-tier pool services to Florida communities. His passion for clean water and happy clients drives everything we do.",
-    "photo": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"
+    "name": "Jodaine Miller",
+    "role": "President, COO",
+    "bio": "I started Summer Splash Pool Services because I saw too many communities struggling with green pools, unreliable techs, and services that disappeared when things got tough. I knew there was a better way. For us, it's more than clear water. It's protecting your amenity, your reputation, and keeping residents proud of where they live.",
+    "phone": "757-508-4293",
+    "email": "jmiller@summersplashpools.com",
+    "photo": "assets/photos/team-jodaine-miller.jpg"
   },
   {
     "id": "m2",
-    "name": "Amanda Foster",
-    "role": "Operations Manager",
-    "bio": "Amanda oversees daily operations and ensures every job meets our high standards. Her background in hospitality management makes her an expert at client satisfaction.",
-    "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+    "name": "Rasheeda Larmond",
+    "role": "Assistant Regional Manager",
+    "bio": "As Assistant Regional Manager at Summer Splash Pool Services, I am dedicated to supporting our team, building strong client relationships, and ensuring exceptional service. I take pride in being organized, dependable, and solutions-focused, with a commitment to creating positive experiences for both our customers and our team.",
+    "email": "rasheda@summersplashpools.com",
+    "photo": "assets/photos/team-rasheeda-larmond.jpg"
   },
   {
     "id": "m3",
-    "name": "Derek Washington",
-    "role": "Head Technician",
-    "bio": "A certified pool operator with extensive renovation experience, Derek leads our technical team. No pool problem is too complex for his expertise.",
-    "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80"
-  },
-  {
-    "id": "m4",
-    "name": "Jessica Nguyen",
-    "role": "Commercial Accounts Lead",
-    "bio": "Jessica manages our commercial client relationships and custom maintenance programs. She ensures every commercial property receives personalized attention.",
-    "photo": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+    "name": "Aldeen Davis",
+    "role": "Office Administrator",
+    "bio": "",
+    "email": "info@summersplashpools.com",
+    "photo": "assets/photos/team-aldeen-davis.jpg"
   }
 ]

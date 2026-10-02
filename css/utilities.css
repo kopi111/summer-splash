@@ -32,6 +32,7 @@
 .flex { display: flex; }
 .flex-center {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -49,8 +50,16 @@
 /* Scroll Animations */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(12px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+/* Without scripting the observer never fires, so content must start visible. */
+@media (scripting: none) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .animate-on-scroll.is-visible {
@@ -63,10 +72,20 @@
 .animate-on-scroll.animate-delay-3 { transition-delay: 0.3s; }
 .animate-on-scroll.animate-delay-4 { transition-delay: 0.4s; }
 
-/* Focus Visible */
+/* Focus Visible — a light halo behind the ring keeps it legible on photography */
 :focus-visible {
-  outline: 2px solid var(--color-aqua);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+.hero :focus-visible,
+.page-hero :focus-visible,
+.section--navy :focus-visible,
+.footer :focus-visible,
+.cta-banner :focus-visible {
+  outline-color: var(--color-white);
+  box-shadow: 0 0 0 4px rgba(17, 29, 53, 0.85);
 }
 
 /* Skip Link */
@@ -85,4 +104,41 @@
 
 .skip-link:focus {
   top: 0;
+}
+
+/* --- Browser surfaces: the parts we did not draw still carry the design --- */
+::selection {
+  background-color: var(--color-aqua-light);
+  color: var(--color-navy-dark);
+}
+
+:root {
+  accent-color: var(--color-aqua-ink);
+  caret-color: var(--color-aqua-ink);
+  scrollbar-color: var(--color-gray-300) var(--color-gray-50);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border: 3px solid var(--color-gray-50);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* Figures that read as measurements line up column by column. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
 }

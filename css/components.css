@@ -25,11 +25,41 @@
 
 .btn:active {
   transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-500);
+  border-color: var(--color-gray-200);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn.is-loading {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.btn.is-loading::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: btn-spin 700ms linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
 }
 
 .btn--primary {
   background-color: var(--color-aqua);
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .btn--primary:hover {
@@ -38,22 +68,34 @@
 
 .btn--secondary {
   background-color: transparent;
-  color: var(--color-aqua);
-  border: 2px solid var(--color-aqua);
+  color: var(--color-aqua-ink);
+  border: 2px solid currentColor;
 }
 
 .btn--secondary:hover {
   background-color: var(--color-aqua);
+  color: var(--color-navy);
+}
+
+.btn--on-dark {
   color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.btn--on-dark:hover {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
 }
 
 .btn--cta {
   background-color: var(--color-coral);
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .btn--cta:hover {
   background-color: var(--color-coral-dark);
+  color: var(--color-white);
 }
 
 .btn--white {
@@ -68,6 +110,10 @@
 .btn--lg {
   padding: var(--space-4) var(--space-8);
   font-size: var(--text-lg);
+}
+
+.btn--block {
+  width: 100%;
 }
 
 .btn--sm {
@@ -139,12 +185,13 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--color-aqua);
-  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+.form-input:focus-visible,
+.form-textarea:focus-visible,
+.form-select:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0;
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 4px rgba(0, 112, 124, 0.16);
 }
 
 .form-input.is-error,
@@ -180,7 +227,7 @@
   height: 18px;
   margin-top: 2px;
   flex-shrink: 0;
-  accent-color: var(--color-aqua);
+  accent-color: var(--color-aqua-ink);
 }
 
 /* --- Modal --- */
@@ -271,19 +318,64 @@
 }
 
 .badge--aqua {
-  background-color: rgba(0, 188, 212, 0.1);
-  color: var(--color-aqua-dark);
+  background-color: rgba(0, 188, 212, 0.12);
+  color: var(--color-aqua-ink);
 }
 
 .badge--coral {
-  background-color: rgba(255, 112, 67, 0.1);
-  color: var(--color-coral-dark);
+  background-color: rgba(255, 112, 67, 0.14);
+  color: var(--color-coral-ink);
 }
 
 /* --- Star Rating --- */
 .stars {
   display: inline-flex;
   gap: 2px;
-  color: var(--color-yellow);
   font-size: var(--text-lg);
+  line-height: 1;
+  color: var(--color-star);
+}
+
+.stars__off {
+  color: var(--color-gray-300);
+}
+
+/* --- Closing call to action --- */
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: var(--color-navy-dark);
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/photos/pool-tiled-backyard.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-banner__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-aqua-light) 0%, var(--color-turquoise) 100%);
+  opacity: 0.94;
+}
+
+.cta-banner .container {
+  position: relative;
+}
+
+.cta-banner h2 {
+  color: var(--color-navy-dark);
+  margin-bottom: var(--space-4);
+}
+
+.cta-banner p {
+  color: var(--color-navy);
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
 }

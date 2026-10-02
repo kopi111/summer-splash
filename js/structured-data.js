@@ -10,21 +10,20 @@ export function injectStructuredData() {
     '@type': 'LocalBusiness',
     'name': 'Summer Splash Pool Services',
     'description': 'Professional pool management, maintenance, renovation, and repair services for commercial and residential clients.',
-    'url': 'https://summersplash.com',
-    'telephone': '(555) 123-4567',
-    'email': 'info@summersplash.com',
+    'url': 'https://www.summersplashpools.com',
+    'telephone': '+1-757-508-4293',
+    'email': 'info@summersplashpools.com',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': '123 Pool Lane',
-      'addressLocality': 'Sunnyvale',
-      'addressRegion': 'FL',
-      'postalCode': '33701',
+      'streetAddress': '700 Tech Center Parkway',
+      'addressLocality': 'Newport News',
+      'addressRegion': 'VA',
+      'postalCode': '23606',
       'addressCountry': 'US'
     },
     'sameAs': [
-      'https://instagram.com/summersplash',
-      'https://facebook.com/summersplash',
-      'https://tiktok.com/@summersplash'
+      'https://www.instagram.com/summersplashpoolservices',
+      'https://www.facebook.com/share/1C3ETpcRN9/'
     ]
   };
 
@@ -35,7 +34,10 @@ export function injectStructuredData() {
     '@type': 'Service',
     'provider': { '@type': 'LocalBusiness', 'name': 'Summer Splash Pool Services' },
     'serviceType': 'Pool Services',
-    'areaServed': { '@type': 'State', 'name': 'Florida' }
+    'areaServed': [
+      { '@type': 'City', 'name': 'Richmond, VA' },
+      { '@type': 'Place', 'name': 'Hampton Roads, VA' }
+    ]
   };
 
   schemas.about = {

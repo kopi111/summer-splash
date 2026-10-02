@@ -1,9 +1,12 @@
 /**
  * Forms – Contact form validation with GDPR consent checkbox
- * Stores submissions in localStorage via data-service
+ * Sends each quote request to the business inbox and keeps a copy in localStorage
+ * so "My Submissions" can list it
  */
 
-import { addItem, getLocalCollection, saveLocalCollection } from './data-service.js';
+import { getLocalCollection, saveLocalCollection } from './data-service.js';
+
+const QUOTE_INBOX_URL = 'https://formsubmit.co/ajax/info@summersplashpools.com';
 
 export function initContactForm() {
   const form = document.getElementById('contact-form');
@@ -11,10 +14,18 @@ export function initContactForm() {
 
   form.addEventListener('submit', handleSubmit);
 
-  // Real-time validation on blur
-  form.querySelectorAll('.form-input, .form-textarea').forEach(input => {
-    input.addEventListener('blur', () => validateField(input));
+  form.querySelectorAll('.form-input, .form-textarea, [type="checkbox"]').forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener(field.type === 'checkbox' ? 'change' : 'input', () => clearErrorOnceFixed(field));
   });
+}
+
+/**
+ * Waiting for blur to clear an error lets it vanish on the mousedown of the submit
+ * button; the button jumps up under the pointer and the click never lands.
+ */
+function clearErrorOnceFixed(field) {
+  if (field.getAttribute('aria-invalid') === 'true') validateField(field);
 }
 
 /**
@@ -29,21 +40,38 @@ function getCustomerId() {
   return id;
 }
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
 
-  const fields = form.querySelectorAll('[required]');
-  let valid = true;
+  if (!validateForm(form)) {
+    revealFirstError(form);
+    return;
+  }
 
-  fields.forEach(field => {
+  const submission = readSubmission(form);
+  setSending(form, true);
+  try {
+    await sendToInbox(submission, form);
+    keepLocalCopy(submission);
+    showSuccess(form);
+  } catch {
+    showSendFailure(form);
+  } finally {
+    setSending(form, false);
+  }
+}
+
+function validateForm(form) {
+  let valid = true;
+  form.querySelectorAll('[required]').forEach(field => {
     if (!validateField(field)) valid = false;
   });
+  return valid;
+}
 
-  if (!valid) return;
-
-  // Store submission in localStorage
-  const submission = {
+function readSubmission(form) {
+  return {
     id: 'c_' + Date.now(),
     customerId: getCustomerId(),
     name: form.querySelector('#name')?.value.trim() || '',
@@ -54,17 +82,87 @@ function handleSubmit(e) {
     date: new Date().toISOString(),
     status: 'new'
   };
+}
 
+/**
+ * GitHub Pages has no server, so FormSubmit relays the request to the business inbox.
+ * The first ever submission makes FormSubmit email an activation link to that inbox;
+ * until someone clicks it every send fails and the visitor sees the phone fallback.
+ */
+async function sendToInbox(submission, form) {
+  const response = await fetch(QUOTE_INBOX_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      Name: submission.name,
+      Email: submission.email,
+      Phone: submission.phone || 'Not given',
+      Service: submission.service || 'Not chosen',
+      Message: submission.message,
+      _subject: `Quote request from ${submission.name}`,
+      _replyto: submission.email,
+      _template: 'table',
+      _honey: form.querySelector('[name="_honey"]')?.value || ''
+    })
+  });
+  const result = await response.json();
+  if (!response.ok || String(result.success) !== 'true') {
+    throw new Error(result.message || `Quote inbox returned ${response.status}`);
+  }
+}
+
+function keepLocalCopy(submission) {
   const contacts = getLocalCollection('contacts');
   contacts.push(submission);
   saveLocalCollection('contacts', contacts);
+}
 
-  // Show success message
-  const formEl = form.closest('.contact-form');
-  const successEl = formEl?.querySelector('.form-success');
+function setSending(form, isSending) {
+  const button = form.querySelector('[type="submit"]');
+  if (!button) return;
+  button.disabled = isSending;
+  button.setAttribute('aria-busy', String(isSending));
+  button.dataset.label ??= button.textContent;
+  button.textContent = isSending ? 'Sending…' : button.dataset.label;
+  if (isSending) hideSendFailure(form);
+}
 
+function showSuccess(form) {
+  const successEl = form.closest('.contact-form')?.querySelector('.form-success');
   form.style.display = 'none';
-  if (successEl) successEl.classList.add('is-visible');
+  if (successEl) {
+    successEl.classList.add('is-visible');
+    announce(successEl);
+  }
+}
+
+function showSendFailure(form) {
+  form.querySelector('.form-send-error')?.classList.add('is-visible');
+}
+
+function hideSendFailure(form) {
+  form.querySelector('.form-send-error')?.classList.remove('is-visible');
+}
+
+/**
+ * Move the page and the keyboard to the first field that failed validation.
+ * Without this the submit button simply does nothing on a long mobile form.
+ */
+function revealFirstError(form) {
+  const field = form.querySelector('.is-error, [aria-invalid="true"]');
+  if (!field) return;
+  field.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  field.focus({ preventScroll: true });
+}
+
+/**
+ * Hiding the form drops focus onto the body, so nothing is read out.
+ */
+function announce(successEl) {
+  const heading = successEl.querySelector('h3');
+  if (!heading) return;
+  heading.setAttribute('tabindex', '-1');
+  heading.focus();
 }
 
 function validateField(field) {
@@ -87,6 +185,7 @@ function validateField(field) {
 
   if (message) {
     field.classList.add('is-error');
+    field.setAttribute('aria-invalid', 'true');
     if (errorEl) {
       errorEl.textContent = message;
       errorEl.classList.add('is-visible');
@@ -95,6 +194,7 @@ function validateField(field) {
   }
 
   field.classList.remove('is-error');
+  field.setAttribute('aria-invalid', 'false');
   if (errorEl) {
     errorEl.textContent = '';
     errorEl.classList.remove('is-visible');

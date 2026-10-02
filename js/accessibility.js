@@ -24,10 +24,18 @@ function initSkipLink() {
 
 function initReducedMotion() {
   const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  document.documentElement.dataset.reducedMotion = mq.matches;
+  applyReducedMotion(mq.matches);
 
-  mq.addEventListener('change', (e) => {
-    document.documentElement.dataset.reducedMotion = e.matches;
+  mq.addEventListener('change', (e) => applyReducedMotion(e.matches));
+}
+
+function applyReducedMotion(reduced) {
+  document.documentElement.dataset.reducedMotion = reduced;
+  // The reduced-motion media query neutralises CSS animation only; SMIL inside
+  // an <svg> keeps running until the document timeline is paused by hand.
+  document.querySelectorAll('svg').forEach(svg => {
+    if (typeof svg.pauseAnimations !== 'function') return;
+    reduced ? svg.pauseAnimations() : svg.unpauseAnimations();
   });
 }
 

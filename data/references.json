@@ -1,46 +1,46 @@
 [
   {
     "id": "r1",
-    "company": "Bayshore Resort & Spa",
-    "address": "450 Bayshore Blvd, Tampa, FL 33606",
-    "contact": "Maria Santos, Operations Director",
-    "phone": "(555) 234-5678",
-    "service": "Commercial Pool Management",
-    "dateFrom": "2023-01",
+    "company": "Waverton Impressions",
+    "address": "501 Coral Key Pl, Newport News, VA 23606",
+    "contact": "Emily Greto",
+    "phone": "(757) 881-9700",
+    "service": "Pool Management (Lifeguard Services)",
+    "dateFrom": "2023",
     "dateTo": "Present",
-    "description": "Full-service management of resort pool complex including main pool, children's pool, and two hot tubs."
+    "description": "Lifeguards are responsible for maintaining a safe, clean and enjoyable swimming environment for all guests."
   },
   {
     "id": "r2",
-    "company": "Sunset Village HOA",
-    "address": "1200 Sunset Dr, St. Petersburg, FL 33707",
-    "contact": "Robert Williams, Board Chair",
-    "phone": "(555) 345-6789",
-    "service": "Maintenance & Renovation",
-    "dateFrom": "2024-02",
+    "company": "Denbigh Village Apartments",
+    "address": "14353 Deloice Crescent, Newport News, VA 23602",
+    "contact": "Milow Boyle",
+    "phone": "(757) 968-5442 · mboyle@capreit.com",
+    "service": "Pool Management (Lifeguard Services)",
+    "dateFrom": "2023",
     "dateTo": "Present",
-    "description": "Weekly maintenance for community pool and complete renovation of pool deck and resurfacing."
+    "description": "Lifeguards are responsible for maintaining a safe, clean and enjoyable swimming environment for all guests."
   },
   {
     "id": "r3",
-    "company": "Palm Harbor Athletic Club",
-    "address": "875 Palm Harbor Pkwy, Palm Harbor, FL 34683",
-    "contact": "Jennifer Liu, General Manager",
-    "phone": "(555) 456-7890",
-    "service": "Commercial Maintenance",
-    "dateFrom": "2022-03",
+    "company": "Gerwyn Manor Apartments",
+    "address": "5194 Gerwyn Cir, Sandston, VA 23150",
+    "contact": "Estela Fuentes",
+    "phone": "(804) 426-8360",
+    "service": "Pool Maintenance and Repairs",
+    "dateFrom": "2023",
     "dateTo": "Present",
-    "description": "Daily maintenance of Olympic-size lap pool, therapy pool, and associated filtration systems."
+    "description": "Scheduled pool maintenance and repairs."
   },
   {
     "id": "r4",
-    "company": "Coastal Living Apartments",
-    "address": "3100 Gulf Blvd, Clearwater, FL 33767",
-    "contact": "Michael Brown, Property Manager",
-    "phone": "(555) 567-8901",
-    "service": "Pool Management & Repairs",
-    "dateFrom": "2024-08",
-    "dateTo": "Present",
-    "description": "Ongoing management of two apartment complex pools including emergency repair services."
+    "company": "Rivermont Station Apartments and Townhomes",
+    "address": "1530 River Tree Drive, Chester, VA 23836",
+    "contact": "Demetrius Scrivner",
+    "phone": "(301) 806-8403",
+    "service": "Pool Management (Pool Attendants), Pool Repairs, Pool Maintenance",
+    "dateFrom": "2023",
+    "dateTo": "2025",
+    "description": "Pool attendant services during scheduled hours throughout the summer, plus support staff: service technician, supervision and repairs."
   }
 ]

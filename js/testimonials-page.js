@@ -29,11 +29,11 @@ async function renderTestimonials() {
   grid.innerHTML = approved.map((t) => `
     <div class="testimonial-card">
       <div class="stars" aria-label="${t.rating} out of 5 stars">
-        ${'&#9733;'.repeat(t.rating)}${'&#9734;'.repeat(5 - t.rating)}
+        <span class="stars__on">${'&#9733;'.repeat(t.rating)}</span><span class="stars__off">${'&#9734;'.repeat(5 - t.rating)}</span>
       </div>
       <p class="testimonial-card__text">"${escapeHtml(t.text)}"</p>
       <div class="testimonial-card__author">
-        <img class="testimonial-card__avatar" src="${escapeHtml(t.photo)}" alt="${escapeHtml(t.name)}" width="48" height="48" loading="lazy">
+        <img class="testimonial-card__avatar" src="${escapeHtml(t.photo)}" alt="" width="48" height="48" loading="lazy" onerror="this.src='assets/avatar-fallback.svg'">
         <div>
           <div class="testimonial-card__name">${escapeHtml(t.name)}</div>
           ${t.property ? `<div class="testimonial-card__property">${escapeHtml(t.property)}</div>` : ''}
@@ -84,76 +84,122 @@ function initReviewForm() {
   const form = document.getElementById('review-form');
   if (!form) return;
 
-  // Star rating interactive
   const starContainer = form.querySelector('.star-rating-input');
   const ratingInput = form.querySelector('#review-rating');
-  if (starContainer && ratingInput) {
-    const stars = starContainer.querySelectorAll('.star-btn');
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        const val = star.dataset.value;
-        ratingInput.value = val;
-        stars.forEach(s => {
-          s.classList.toggle('is-active', Number(s.dataset.value) <= Number(val));
-        });
-      });
-      star.addEventListener('mouseenter', () => {
-        const val = star.dataset.value;
-        stars.forEach(s => {
-          s.classList.toggle('is-hover', Number(s.dataset.value) <= Number(val));
-        });
-      });
-      star.addEventListener('mouseleave', () => {
-        stars.forEach(s => s.classList.remove('is-hover'));
-      });
-    });
-  }
+  if (starContainer && ratingInput) initStarRating(starContainer, ratingInput);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    const name = form.querySelector('#review-name')?.value.trim();
-    const property = form.querySelector('#review-property')?.value.trim() || '';
-    const rating = Number(ratingInput?.value) || 5;
-    const text = form.querySelector('#review-text')?.value.trim();
-    const consent = form.querySelector('#review-consent')?.checked;
-
-    if (!name || !text) {
-      alert('Please fill in your name and review.');
-      return;
-    }
-    if (!consent) {
-      alert('Please agree to the privacy policy to submit your review.');
-      return;
-    }
-
-    const review = {
-      id: 't_' + Date.now(),
-      customerId: getCustomerId(),
-      name,
-      property,
-      role: 'Customer',
-      location: '',
-      rating,
-      text,
-      date: new Date().toISOString().split('T')[0],
-      photo: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=100&h=100&fit=crop&crop=face',
-      status: 'pending'
-    };
-
-    addItem('testimonials', review);
-    form.reset();
-
-    // Reset stars
-    if (starContainer) {
-      starContainer.querySelectorAll('.star-btn').forEach(s => s.classList.remove('is-active'));
-    }
-
-    // Show success
-    const successEl = document.getElementById('review-success');
-    if (successEl) successEl.classList.add('is-visible');
-    form.style.display = 'none';
+    submitReview(form, ratingInput, starContainer);
   });
+
+  document.getElementById('write-another-review')
+    ?.addEventListener('click', () => resetReviewForm(form, ratingInput, starContainer));
+}
+
+function initStarRating(container, ratingInput) {
+  const stars = [...container.querySelectorAll('.star-btn')];
+
+  const paint = (value, className) =>
+    stars.forEach(s => s.classList.toggle(className, Number(s.dataset.value) <= value));
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const value = Number(star.dataset.value);
+      ratingInput.value = String(value);
+      paint(value, 'is-active');
+      stars.forEach(s => s.setAttribute('aria-checked', String(s === star)));
+      showFieldError(container, '');
+    });
+    star.addEventListener('mouseenter', () => paint(Number(star.dataset.value), 'is-hover'));
+    star.addEventListener('mouseleave', () => paint(0, 'is-hover'));
+  });
+}
+
+function submitReview(form, ratingInput, starContainer) {
+  const name = form.querySelector('#review-name')?.value.trim();
+  const property = form.querySelector('#review-property')?.value.trim() || '';
+  const rating = Number(ratingInput?.value);
+  const text = form.querySelector('#review-text')?.value.trim();
+  const consent = form.querySelector('#review-consent')?.checked;
+
+  const problem = firstProblem({ name, rating, text, consent }, form, starContainer);
+  if (problem) {
+    problem.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    problem.focus?.({ preventScroll: true });
+    return;
+  }
+
+  addItem('testimonials', {
+    id: 't_' + Date.now(),
+    customerId: getCustomerId(),
+    name,
+    property,
+    role: 'Customer',
+    location: '',
+    rating,
+    text,
+    date: new Date().toISOString().split('T')[0],
+    photo: 'assets/avatar-fallback.svg',
+    status: 'pending'
+  });
+
+  form.style.display = 'none';
+  const successEl = document.getElementById('review-success');
+  if (successEl) {
+    successEl.classList.add('is-visible');
+    const heading = successEl.querySelector('h3');
+    heading?.setAttribute('tabindex', '-1');
+    heading?.focus();
+  }
+}
+
+/**
+ * Returns the first element the visitor needs to fix, after writing its message.
+ */
+function firstProblem({ name, rating, text, consent }, form, starContainer) {
+  const nameField = form.querySelector('#review-name');
+  const textField = form.querySelector('#review-text');
+  const consentField = form.querySelector('#review-consent');
+
+  showFieldError(nameField, name ? '' : 'Please tell us your name.');
+  showFieldError(starContainer, rating ? '' : 'Please choose a rating from one to five stars.');
+  showFieldError(textField, text ? '' : 'Please write a few words about your experience.');
+  showFieldError(consentField, consent ? '' : 'Please agree to the privacy policy to submit.');
+
+  if (!name) return nameField;
+  if (!rating) return starContainer.querySelector('.star-btn');
+  if (!text) return textField;
+  if (!consent) return consentField;
+  return null;
+}
+
+function showFieldError(element, message) {
+  const group = element?.closest('.form-group');
+  const errorEl = group?.querySelector('.form-error');
+  if (!errorEl) return;
+  errorEl.textContent = message;
+  errorEl.classList.toggle('is-visible', Boolean(message));
+  if (element?.classList) element.classList.toggle('is-error', Boolean(message));
+  if (element?.setAttribute && element.tagName !== 'DIV') {
+    element.setAttribute('aria-invalid', String(Boolean(message)));
+  }
+}
+
+function resetReviewForm(form, ratingInput, starContainer) {
+  document.getElementById('review-success')?.classList.remove('is-visible');
+  form.style.display = '';
+  form.reset();
+  if (ratingInput) ratingInput.value = '';
+  starContainer?.querySelectorAll('.star-btn').forEach(s => {
+    s.classList.remove('is-active', 'is-hover');
+    s.setAttribute('aria-checked', 'false');
+  });
+  form.querySelectorAll('.form-error').forEach(e => {
+    e.textContent = '';
+    e.classList.remove('is-visible');
+  });
+  form.querySelector('#review-name')?.focus();
 }
 
 function escapeHtml(str) {

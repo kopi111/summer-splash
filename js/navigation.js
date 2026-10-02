@@ -2,6 +2,8 @@
  * Navigation – Hamburger toggle, sticky scroll effect, active link highlight
  */
 
+import { trapFocus } from './accessibility.js';
+
 export function initNavigation() {
   const header = document.querySelector('.header');
   if (!header) return;
@@ -16,32 +18,36 @@ function initHamburger(header) {
   const nav = header.querySelector('.nav');
   if (!btn || !nav) return;
 
+  let releaseFocus = null;
+
+  function open() {
+    nav.classList.add('is-open');
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    releaseFocus = trapFocus(nav);
+  }
+
+  function close({ returnFocus = false } = {}) {
+    nav.classList.remove('is-open');
+    btn.classList.remove('is-active');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    releaseFocus?.();
+    releaseFocus = null;
+    if (returnFocus) btn.focus();
+  }
+
   btn.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('is-open');
-    btn.classList.toggle('is-active', isOpen);
-    btn.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    nav.classList.contains('is-open') ? close() : open();
   });
 
-  // Close on link click
-  nav.querySelectorAll('.nav__link').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      btn.classList.remove('is-active');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
+  nav.querySelectorAll('.nav__link, .nav__cta a').forEach(link => {
+    link.addEventListener('click', () => close());
   });
 
-  // Close on Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-      nav.classList.remove('is-open');
-      btn.classList.remove('is-active');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-      btn.focus();
-    }
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) close({ returnFocus: true });
   });
 }
 

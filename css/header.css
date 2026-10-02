@@ -92,12 +92,19 @@
 
 .nav__link:hover,
 .nav__link.is-active {
-  color: var(--color-aqua);
+  color: var(--color-aqua-ink);
   background-color: rgba(0, 188, 212, 0.05);
 }
 
 .nav__cta {
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
+  padding-inline: var(--space-4);
+}
+
+.nav__cta .btn {
+  width: 100%;
+  padding-block: var(--space-4);
+  font-size: var(--text-lg);
 }
 
 /* Hamburger */
@@ -106,9 +113,10 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 28px;
-  height: 28px;
-  padding: 0;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  margin-right: -8px;
   z-index: var(--z-sticky);
 }
 
@@ -167,5 +175,12 @@
   .nav__cta {
     margin-top: 0;
     margin-left: var(--space-3);
+    padding-inline: 0;
+  }
+
+  .nav__cta .btn {
+    width: auto;
+    padding-block: var(--space-3);
+    font-size: var(--text-base);
   }
 }

@@ -11,8 +11,13 @@ import { initAnalytics } from './analytics.js';
 import { initMetaPixel } from './meta-pixel.js';
 
 async function init() {
-  // Load shared header/footer
-  await loadComponents();
+  // A failed header/footer fetch must not stop the rest of the page initialising —
+  // without initAnimations() every .animate-on-scroll block stays at opacity 0.
+  try {
+    await loadComponents();
+  } catch (error) {
+    console.error('Shared components failed to load', error);
+  }
 
   // Core functionality
   initNavigation();

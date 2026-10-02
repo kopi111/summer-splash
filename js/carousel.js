@@ -9,7 +9,10 @@ export async function initCarousel() {
   if (!container) return;
 
   const testimonials = await getData('testimonials');
-  if (testimonials.length === 0) return;
+  if (testimonials.length === 0) {
+    container.querySelector('.carousel__controls')?.remove();
+    return;
+  }
 
   renderCarousel(container, testimonials);
 }
@@ -27,11 +30,11 @@ function renderCarousel(container, testimonials) {
     <div class="carousel__slide">
       <div class="carousel__card">
         <div class="stars" aria-label="${t.rating} out of 5 stars">
-          ${'&#9733;'.repeat(t.rating)}${'&#9734;'.repeat(5 - t.rating)}
+          <span class="stars__on">${'&#9733;'.repeat(t.rating)}</span><span class="stars__off">${'&#9734;'.repeat(5 - t.rating)}</span>
         </div>
         <p class="carousel__quote">"${escapeHtml(t.text)}"</p>
         <div class="carousel__author">
-          <img class="carousel__avatar" src="${escapeHtml(t.photo)}" alt="${escapeHtml(t.name)}" width="48" height="48" loading="lazy">
+          <img class="carousel__avatar" src="${escapeHtml(t.photo)}" alt="" width="48" height="48" loading="lazy" onerror="this.src='assets/avatar-fallback.svg'">
           <div>
             <div class="carousel__name">${escapeHtml(t.name)}</div>
             <div class="carousel__role">${escapeHtml(t.role)}, ${escapeHtml(t.location)}</div>

@@ -39,7 +39,7 @@ async function renderMyReviews(customerId) {
     <div class="submission-card">
       <div class="submission-card__header">
         <div class="stars" aria-label="${t.rating} out of 5 stars">
-          ${'&#9733;'.repeat(t.rating)}${'&#9734;'.repeat(5 - t.rating)}
+          <span class="stars__on">${'&#9733;'.repeat(t.rating)}</span><span class="stars__off">${'&#9734;'.repeat(5 - t.rating)}</span>
         </div>
         <span class="status-badge status-badge--${statusClass}">${status}</span>
       </div>

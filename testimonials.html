@@ -10,8 +10,8 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Testimonials & References – Summer Splash Pool Services">
   <meta property="og:description" content="Read what our clients say about Summer Splash Pool Services. View testimonials and professional references from commercial and residential customers.">
-  <meta property="og:url" content="https://summersplash.com/testimonials.html">
-  <meta property="og:image" content="https://summersplash.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://www.summersplashpools.com/testimonials.html">
+  <meta property="og:image" content="https://kopi111.github.io/summer-splash/assets/og-image.jpg">
   <meta property="og:site_name" content="Summer Splash Pool Services">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
 
     <main id="main-content">
       <!-- Hero -->
-      <section class="testimonials-hero">
+      <section class="page-hero">
         <div class="container">
           <h1>Testimonials & References</h1>
           <p>Hear from the pool owners, property managers, and businesses who trust Summer Splash with their pools.</p>
@@ -45,10 +45,9 @@
       </section>
 
       <!-- Testimonials Grid -->
-      <section class="section">
+      <section class="section section--gray">
         <div class="container">
           <div class="section-header">
-            <span class="label">Client Feedback</span>
             <h2>What Our Clients Say</h2>
           </div>
           <div class="grid grid--3" id="testimonials-grid">
@@ -58,10 +57,9 @@
       </section>
 
       <!-- References Table -->
-      <section class="section section--gray">
+      <section class="section">
         <div class="container">
           <div class="section-header">
-            <span class="label">Professional References</span>
             <h2>Our References</h2>
             <p>We're proud to share references from our long-term commercial partnerships.</p>
           </div>
@@ -87,7 +85,6 @@
       <section class="section" id="leave-review">
         <div class="container">
           <div class="section-header">
-            <span class="label">Share Your Experience</span>
             <h2>Leave a Review</h2>
             <p>We'd love to hear about your experience with Summer Splash.</p>
           </div>
@@ -96,7 +93,8 @@
               <div class="form-row form-row--2">
                 <div class="form-group">
                   <label class="form-label" for="review-name">Your Name *</label>
-                  <input class="form-input" type="text" id="review-name" required placeholder="Full name">
+                  <input class="form-input" type="text" id="review-name" required placeholder="Full name" autocomplete="name" aria-describedby="review-name-error">
+                  <span class="form-error" id="review-name-error" role="alert"></span>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="review-property">Property Name</label>
@@ -106,48 +104,52 @@
 
               <div class="form-group">
                 <label class="form-label">Your Rating *</label>
-                <input type="hidden" id="review-rating" value="5">
-                <div class="star-rating-input" aria-label="Select rating">
-                  <button type="button" class="star-btn is-active" data-value="1" aria-label="1 star">&#9733;</button>
-                  <button type="button" class="star-btn is-active" data-value="2" aria-label="2 stars">&#9733;</button>
-                  <button type="button" class="star-btn is-active" data-value="3" aria-label="3 stars">&#9733;</button>
-                  <button type="button" class="star-btn is-active" data-value="4" aria-label="4 stars">&#9733;</button>
-                  <button type="button" class="star-btn is-active" data-value="5" aria-label="5 stars">&#9733;</button>
+                <input type="hidden" id="review-rating" value="">
+                <div class="star-rating-input" role="radiogroup" aria-label="Your rating out of five">
+                  <button type="button" class="star-btn" role="radio" aria-checked="false" data-value="1" aria-label="1 star">&#9733;</button>
+                  <button type="button" class="star-btn" role="radio" aria-checked="false" data-value="2" aria-label="2 stars">&#9733;</button>
+                  <button type="button" class="star-btn" role="radio" aria-checked="false" data-value="3" aria-label="3 stars">&#9733;</button>
+                  <button type="button" class="star-btn" role="radio" aria-checked="false" data-value="4" aria-label="4 stars">&#9733;</button>
+                  <button type="button" class="star-btn" role="radio" aria-checked="false" data-value="5" aria-label="5 stars">&#9733;</button>
                 </div>
+                <span class="form-error" id="rating-error" role="alert"></span>
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="review-text">Your Review *</label>
-                <textarea class="form-textarea" id="review-text" required placeholder="Tell us about your experience with Summer Splash..."></textarea>
+                <textarea class="form-textarea" id="review-text" required placeholder="Tell us about your experience with Summer Splash..." aria-describedby="review-text-error"></textarea>
+                <span class="form-error" id="review-text-error" role="alert"></span>
               </div>
 
               <div class="form-group">
                 <label class="form-checkbox">
-                  <input type="checkbox" id="review-consent" required>
+                  <input type="checkbox" id="review-consent" required aria-describedby="review-consent-error">
                   <span>I agree to the <a href="privacy-policy.html">Privacy Policy</a> and consent to my review being displayed publicly. *</span>
                 </label>
+                <span class="form-error" id="review-consent-error" role="alert"></span>
               </div>
 
-              <button type="submit" class="btn btn--cta btn--lg" style="width: 100%;">Submit Review</button>
+              <button type="submit" class="btn btn--cta btn--lg btn--block">Submit Review</button>
             </form>
 
-            <div class="review-success" id="review-success">
+            <div class="review-success" id="review-success" role="status">
               <div class="form-success__icon">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
               <h3>Review Submitted!</h3>
               <p>Thank you for your review. It will be visible once approved by our team.</p>
-              <button type="button" class="btn btn--primary btn--sm" style="margin-top: var(--space-4);" onclick="document.getElementById('review-success').classList.remove('is-visible'); document.getElementById('review-form').style.display=''; document.getElementById('review-form').reset(); document.querySelectorAll('.star-btn').forEach(s => s.classList.add('is-active'));">Write Another Review</button>
+              <button type="button" class="btn btn--primary btn--sm mt-4" id="write-another-review">Write Another Review</button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA -->
-      <section class="section" style="background: linear-gradient(135deg, var(--color-aqua-dark) 0%, var(--color-turquoise) 100%); text-align: center;">
+      <!-- Closing call to action -->
+      <section class="section cta-banner">
+        <div class="cta-banner__bg" aria-hidden="true"></div>
         <div class="container">
-          <h2 style="color: var(--color-white); margin-bottom: var(--space-4);">Join Our Growing List of Happy Clients</h2>
-          <p style="color: rgba(255,255,255,0.9); font-size: var(--text-lg); margin-bottom: var(--space-8); max-width: 500px; margin-inline: auto;">Experience the Summer Splash difference — get your free quote today.</p>
+          <h2>Join Our Growing List of Happy Clients</h2>
+          <p>Experience the Summer Splash difference — get your free quote today.</p>
           <a href="contact.html" class="btn btn--white btn--lg">Get a Free Quote</a>
         </div>
       </section>
