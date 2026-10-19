@@ -1,0 +1,95 @@
+Summer Splash website — replace stock photos with real Summer Splash photos
+Started 2026-09-14
+
+DONE
+[x] 1. 10 real photos imported to assets/photos/ (resized, EXIF stripped, progressive JPEG, 2.0 MB total)
+[x] 2. Home page: hero background, 4 service tiles, why-us split, gallery strip (5), CTA banner
+[x] 3. services.html: all 8 service card images (4 commercial + 4 residential)
+[x] 4. about.html: "Our Story" image -> real team photo
+[x] 5. assets/og-image.jpg created; og:image on all 9 public pages now points at the live
+       GitHub Pages URL instead of the never-registered summersplash.com
+[x] 6. Previewed locally (python3 -m http.server 8099) — every photo loads, no stock images left
+       outside data/*.json
+
+IMPECCABLE POLISH PASS — 2026-09-15
+[x] Contrast: every brand fill failed against its own label. Palette untouched; the labels moved.
+    CTA coral + navy text 5.18:1 · aqua + navy 6.19:1 · new --color-aqua-ink #007A87 for teal TEXT
+    · error/success/star colours raised · CTA band is navy on turquoise (10.2:1)
+[x] Focus ring was aqua at 2.3:1 — invisible on every light surface. Now --color-focus #00707C
+    with a light halo, and a white variant on navy/photographic surfaces
+[x] Form fields killed their outline entirely — restored, plus aria-invalid + aria-describedby
+[x] Contact form did nothing visible on a failed submit — now scrolls to and focuses the first
+    bad field; success is role="status" and takes focus
+[x] Review form: three alert() calls replaced with inline errors; rating no longer pre-set to 5
+[x] Stars: empty stars were the same yellow as full ones, so 3 stars looked like 5. Split + greyed
+[x] Eyebrow labels above headings removed (9) — every one restated the heading below it
+[x] Motion: 34 identical staggered entrances cut to 7; exponential ease-out; SMIL now honours
+    prefers-reduced-motion; a failed component fetch no longer leaves the page blank
+[x] CTA band was hand-rolled 3 ways at 3 sizes — now one component; about.html finally has one
+[x] CTA label was 4 different verbs — "Get a Free Quote" everywhere
+[x] Four identical page-banner blocks collapsed into one .page-hero
+[x] .section--sm was silently dead above 768px (specificity); :where() fixes it
+[x] Touch targets: hamburger 28px -> 44px, star buttons -> 44px, service tabs -> 44px
+[x] Mobile menu CTA was a third the height of a nav row — now full width and aligned
+[x] Mobile menu had no focus trap (trapFocus existed but was never called)
+[x] 404 buttons were clipped off-screen at 375px; primary was aqua while every other page used coral
+[x] Testimonial cards were invisible on white and their author rows were ragged
+[x] Home tiles deep-link to services.html#commercial / #residential; tabs restore from the URL
+[x] Phone and email are tap-to-call / tap-to-mail in the footer and on the contact card
+[x] Browser surfaces themed: selection, caret, scrollbar, accent-colour, tabular figures
+[x] Gradient-clipped hero text replaced with a solid word; display tracking + balanced headings
+[x] Avatars fall back to a local SVG instead of showing broken images
+[x] Restored the repo's CRLF line endings after my edits flipped them to LF
+
+STILL OPEN — needs kopi
+[ ] 7. Review, then commit + push to kopi111/summer-splash (nothing pushed yet; pushing publishes
+       these photos on the live GitHub Pages site)
+
+NOT DONE — no photos available
+  - data/team.json          4 staff headshots, still stock faces
+  - data/testimonials.json  6 client avatars, still stock faces
+
+FIXED 2026-09-14 (kopi's review)
+[x] Gallery strip no longer leaves dead navy space on the right — swipeable snap row under 900px,
+    5-column full-width grid above it
+[x] Renovation and Repairs no longer show near-identical shots of the same job. Every adjacent pair
+    now alternates finished result vs. work in progress:
+      home tiles      lifeguard / waterfront pool / finished spa / tech at the waterline
+      commercial      lifeguard / lap pool / finished spa+deck / crew on site
+      residential     waterfront pool / mosaic spa / waterline repair / winter cover
+
+PRE-EXISTING, NOT TOUCHED
+  - og:url / sitemap.xml / robots.txt still name summersplash.com, a domain that was never bought
+
+CLIENT INFORMATION FORM — 2026-10-01 (Jodaine Miller, signed 9/27/26)
+[x] 8.  Contact: 757-508-4293 (call + WhatsApp), info@summersplashpools.com,
+        700 Tech Center Parkway, Newport News, VA 23606 + map — footer, contact, privacy, terms, schema
+[x] 9.  Hours: Mon-Fri 9-5, Sat/Sun closed, no emergency service
+[x] 10. Florida -> Southern Virginia (Richmond + Hampton Roads) everywhere; terms governing law -> Virginia
+[x] 11. Stats: 150+ pools, 14+ years, 98%; drop 24/7 stat; founded 2020; tagline; CPO + AST
+[x] 12. Social: real Instagram + Facebook links, TikTok removed (coming soon)
+[x] 13. About story replaced with client's text; team.json names/titles/bios
+[x] 14. Services: remove Emergency Repairs; add Repairs & Compliance (misc repair, compliance prep,
+        health inspection prep)
+[x] 15. testimonials.json -> 3 real reviews; references.json -> 4 real clients
+[x] 16. Domain summersplashpools.com in og:url / sitemap / robots / schema (no CNAME file yet)
+[x] 17. Preview locally, CRLF check
+     Verified 2026-10-01: 5 pages at 1280 + 375px, no console errors, no horizontal scroll, map loads
+
+STILL OPEN — needs the client
+[~] 18. Jodaine photo replaced 10-01 with the real one, but source was a 125px screenshot (soft). Get full-size original
+[x] 19a. Rasheeda's headshot added 10-01 (assets/photos/team-rasheeda-larmond.jpg). [~] 19b. Aldeen's bio: PLACEHOLDER written 10-01 (form's bio cut off) - client to approve/replace
+[ ] 20. Rasheeda's email is spelled "rasheda@" on the form; confirm it
+[~] 21. Quote form now POSTs to FormSubmit -> info@summersplashpools.com (2026-10-01), still keeps the
+        localStorage copy for My Submissions. On a failed send the form keeps its values and shows
+        "call or WhatsApp 757-508-4293". NEEDS: after the push, send one real test request; FormSubmit
+        emails an "Activate Form" link to info@ -- someone with that inbox must click it. Until then every
+        send fails (visitors get the phone fallback). Optional: swap the address in js/forms.js for the
+        random alias FormSubmit gives after activation, so the inbox address is not in the page source.
+[x] 23. Found while testing 21: after a failed attempt, ticking the consent box last then CLICKING
+        submit did nothing (the box's error cleared on blur, the button jumped under the mouse).
+        Errors now clear as the field is fixed. Mocked-relay test: validation, sending state, failure
+        fallback, success, My Submissions, 375px -- all pass, no console errors.
+[x] 24. Success copy "within 24 hours" -> "within one business day" (closed weekends); privacy policy
+        names FormSubmit as the service that delivers contact-form requests
+[ ] 22. Point summersplashpools.com DNS at GitHub Pages + add CNAME file (og:url/sitemap already use it)
