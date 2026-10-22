@@ -102,6 +102,7 @@
 .page-hero p {
   max-width: 62ch;
   margin-inline: auto;
+  text-wrap: balance;
   font-size: var(--text-xl);
   color: var(--color-gray-300);
 }
