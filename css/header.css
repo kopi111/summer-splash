@@ -42,7 +42,7 @@
 }
 
 .header__logo img {
-  height: 40px;
+  height: calc(var(--header-height) - 8px);
   width: auto;
 }
 

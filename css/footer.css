@@ -27,7 +27,8 @@
 }
 
 .footer__logo img {
-  height: 36px;
+  height: 96px;
+  width: auto;
 }
 
 .footer__logo-text {
