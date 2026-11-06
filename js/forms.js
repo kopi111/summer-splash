@@ -6,7 +6,9 @@
 
 import { getLocalCollection, saveLocalCollection } from './data-service.js';
 
-const QUOTE_INBOX_URL = 'https://formsubmit.co/ajax/info@summersplashpools.com';
+// Google Apps Script web app (google-apps-script/quote-inbox.gs) that emails info@summersplashpools.com.
+// Paste the deployment's /exec URL here after deploying it.
+const QUOTE_INBOX_URL = 'https://script.google.com/macros/s/AKfycbxIUrpWMuzgTyZrZ9flT8ZcNGc1XjBVAbmpniDujWItNG6p9XF2fccVYpy37fzU5rgNEg/exec';
 
 export function initContactForm() {
   const form = document.getElementById('contact-form');
@@ -86,14 +88,14 @@ function readSubmission(form) {
 }
 
 /**
- * GitHub Pages has no server, so FormSubmit relays the request to the business inbox.
- * The first ever submission makes FormSubmit email an activation link to that inbox;
- * until someone clicks it every send fails and the visitor sees the phone fallback.
+ * The site has no server, so a Google Apps Script on the client's Workspace account
+ * emails each request to the business inbox. Sent as text/plain so the browser does not
+ * need a CORS preflight, which Apps Script cannot answer.
  */
 async function sendToInbox(submission, form) {
   const response = await fetch(QUOTE_INBOX_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({
       Name: submission.name,
       Email: submission.email,
@@ -101,9 +103,6 @@ async function sendToInbox(submission, form) {
       'Pool Address': submission.poolAddress || 'Not given',
       Service: submission.service || 'Not chosen',
       Message: submission.message,
-      _subject: `Quote request from ${submission.name}`,
-      _replyto: submission.email,
-      _template: 'table',
       _honey: form.querySelector('[name="_honey"]')?.value || ''
     })
   });
