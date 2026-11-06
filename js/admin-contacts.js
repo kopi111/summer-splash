@@ -16,7 +16,7 @@ function renderTable() {
   const contacts = getLocalCollection('contacts');
 
   if (contacts.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" class="admin-empty">No contact submissions yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="admin-empty">No contact submissions yet.</td></tr>';
     return;
   }
 
@@ -28,6 +28,7 @@ function renderTable() {
       <td><strong>${escapeHtml(c.name)}</strong></td>
       <td>${escapeHtml(c.email)}</td>
       <td>${escapeHtml(c.phone || '—')}</td>
+      <td>${escapeHtml(c.poolAddress || '—')}</td>
       <td>${escapeHtml(c.service || '—')}</td>
       <td class="truncate">${escapeHtml(c.message)}</td>
       <td>${formatDate(c.date)}</td>
@@ -52,11 +53,12 @@ function bindActions() {
 }
 
 function downloadCSV(filename, data) {
-  const headers = ['Name', 'Email', 'Phone', 'Service', 'Message', 'Date', 'Status'];
+  const headers = ['Name', 'Email', 'Phone', 'Pool Address', 'Service', 'Message', 'Date', 'Status'];
   const rows = data.map(c => [
     csvEscape(c.name),
     csvEscape(c.email),
     csvEscape(c.phone || ''),
+    csvEscape(c.poolAddress || ''),
     csvEscape(c.service || ''),
     csvEscape(c.message),
     csvEscape(formatDate(c.date)),

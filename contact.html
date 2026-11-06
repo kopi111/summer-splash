@@ -78,25 +78,31 @@
             <div class="contact-form">
               <h2>Request a Free Quote</h2>
               <form id="contact-form" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="name">Full Name *</label>
+                  <input class="form-input" type="text" id="name" name="name" aria-describedby="name-error" required placeholder="John Doe" autocomplete="name">
+                  <span class="form-error" id="name-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pool-address">Pool Address</label>
+                  <input class="form-input" type="text" id="pool-address" name="pool-address" placeholder="Street, city, state, ZIP" autocomplete="street-address">
+                </div>
+
                 <div class="form-row form-row--2">
-                  <div class="form-group">
-                    <label class="form-label" for="name">Full Name *</label>
-                    <input class="form-input" type="text" id="name" name="name" aria-describedby="name-error" required placeholder="John Doe" autocomplete="name">
-                    <span class="form-error" id="name-error" role="alert"></span>
-                  </div>
                   <div class="form-group">
                     <label class="form-label" for="email">Email *</label>
                     <input class="form-input" type="email" id="email" name="email" aria-describedby="email-error" required placeholder="john@example.com" autocomplete="email">
                     <span class="form-error" id="email-error" role="alert"></span>
                   </div>
-                </div>
-
-                <div class="form-row form-row--2">
                   <div class="form-group">
                     <label class="form-label" for="phone">Phone</label>
                     <input class="form-input" type="tel" id="phone" name="phone" aria-describedby="phone-error" placeholder="(757) 000-0000" autocomplete="tel">
                     <span class="form-error" id="phone-error" role="alert"></span>
                   </div>
+                </div>
+
+                <div class="form-row">
                   <div class="form-group">
                     <label class="form-label" for="service">Service Interested In</label>
                     <select class="form-select" id="service" name="service">
@@ -161,6 +167,10 @@
                   <div class="hours-list__row">
                     <span class="hours-list__day">Sunday</span>
                     <span class="hours-list__time">Closed</span>
+                  </div>
+                  <div class="hours-list__row">
+                    <span class="hours-list__day">June - September</span>
+                    <span class="hours-list__time">Every day, 9:00 AM - 5:00 PM</span>
                   </div>
                 </div>
               </div>
