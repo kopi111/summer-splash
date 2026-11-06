@@ -7,7 +7,10 @@
   display: grid;
   gap: var(--space-6);
   grid-template-columns: 1fr;
-  margin-bottom: var(--space-12);
+}
+
+.section.contact-main {
+  padding-top: 0;
 }
 
 .contact-card {
@@ -44,7 +47,7 @@
 
 @media (min-width: 768px) {
   .contact-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
